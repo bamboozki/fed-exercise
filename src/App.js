@@ -1,10 +1,17 @@
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+
+const Home = lazy(() => import('./pages/Home/Home'));
 
 function App() {
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">React App Ready</h1>
-    </div>
+    <Router>
+      <Suspense fallback={<div className="p-4 text-lg">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 
